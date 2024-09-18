@@ -1,0 +1,92 @@
+<div class="card my-5">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <h3 class="mb-0">
+          {{ titulo }}
+          <!--Interpolacion
+              sirve para enviar datos desde el .ts hacia el html
+            -->
+        </h3>
+      </div>
+      <form [formGroup]="frm_libro" (ngSubmit)="grabar()">
+        <div class="row">
+          <div class="form-group mb-3">
+            <label class="form-label" for="titulo">Titulo</label>
+            <input
+              formControlName="titulo"
+              type="text"
+              class="form-control"
+              id="titulo"
+              placeholder="Ingrese el titulo"
+            />
+            <div *ngIf="frm_libro.get('titulo').invalid && frm_libro.get('titulo').touched">
+              <small *ngIf="frm_libro.get('titulo').hasError('required')" style="color: red">
+                El titulo es requerido
+              </small>
+            </div>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label class="form-label" for="isbn">ISBN</label>
+            <input
+              formControlName="isbn"
+              type="text"
+              class="form-control"
+              id="isbn"
+              placeholder="Ingrese el ISBN"
+            />
+            <div *ngIf="frm_libro.get('isbn').invalid && frm_libro.get('isbn').touched">
+              <small *ngIf="frm_libro.get('isbn').hasError('required')" style="color: red">
+                El ISBN es requerido
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label" for="genero">Genero</label>
+            <input
+              formControlName="genero"
+              type="text"
+              class="form-control"
+              id="isbn"
+              placeholder="Ingrese el nombre del producto"
+            />
+            <div *ngIf="frm_libro.get('genero').invalid && frm_libro.get('genero').touched">
+              <small *ngIf="frm_libro.get('genero').hasError('required')" style="color: red">
+                El nombre del producto es requerido
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label" for="fecha_publicacion">Fecha</label>
+            <input type="date" class="form-control" formControlName="fecha_publicacion" id="fecha_publicacion"/>
+            @if (frm_libro.get('fecha_publicacion').invalid && frm_libro.get('fecha_publicacion').touched) {
+              <div>
+                @if (frm_libro.get('fecha_publicacion').hasError('required')) {
+                  <small style="color: red">Los fecha de publicacion es requeridos</small>
+                }
+              </div>
+            }
+          </div>
+  
+  
+          <div class="form-group mb-3">
+            <label class="form-label" for="autor_id">Autor</label>
+            <select formControlName="autor_id" class="form-control" id="autor_id" (change)="cambioAutor($event)">
+              @for (autor of listaAutor; track $index) {
+                <option [value]="autor.autor_id">
+                  {{ autor.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+  
+          <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-primary" [disabled]="frm_libro.invalid">Grabar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
