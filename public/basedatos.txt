@@ -1,0 +1,24 @@
+
+CREATE DATABASE `evaluacion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+
+CREATE TABLE `evaluacion`.`autor` (
+  `autor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(145) NOT NULL,
+  `apellido` varchar(500) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `nacionalidad` varchar(145) NOT NULL,
+  PRIMARY KEY (`autor_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE  `evaluacion`.`libros` (
+  `libro_id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(450) NOT NULL,
+  `isbn` varchar(800) NOT NULL,
+  `genero` varchar(500) NOT NULL,
+  `fecha_publicacion` date NOT NULL,
+  `autor_id` int(11) NOT NULL,
+  PRIMARY KEY (`libro_id`),
+  KEY `autor_id_idx` (`autor_id`),
+  CONSTRAINT `autor_id` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`autor_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

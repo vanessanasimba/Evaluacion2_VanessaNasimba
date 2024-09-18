@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class LibroService {
 
-  apiurl = 'http://localhost:8080/Vanessa_Nasimba_Evaluacion2/controller/libro.controller.php?op=';
+  apiurl = 'http://localhost:8080/Evaluacion2_VanessaNasimba/controller/libro.controller.php?op=';
 
   constructor(private lector: HttpClient) { }
 

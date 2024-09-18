@@ -51,7 +51,7 @@ class Libros{
                         `titulo` = '$titulo',
                         `isbn` = '$isbn',
                         `genero` = '$genero',
-                        `fecha_publicacion` = $fecha_publicacion,
+                        `fecha_publicacion` = '$fecha_publicacion',
                         `autor_id` = $autor_id
                         WHERE `libro_id` = $libro_id";
             if (mysqli_query($con, $cadena)) {
